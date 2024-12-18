@@ -1,4 +1,5 @@
 ﻿using tabuleiro;
+using xadrex_console;
 
 namespace Course {
     class Program {
@@ -6,7 +7,7 @@ namespace Course {
 
             Tabuleiro tab = new Tabuleiro(8, 8);
 
-            Console.WriteLine($"Posição {tab}");
+            Tela.ImprimirTabuleiro(tab);
 
             Console.ReadLine();
 
