@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xadrex_console.tabuleiro;
+using tabuleiro;
 
 namespace tabuleiro {
     internal class Tabuleiro {
@@ -24,6 +24,11 @@ namespace tabuleiro {
             
             return pecas[linha, coluna];
 
+        }
+
+        public void colocarPeca(Peca p, Posicao pos) {
+            pecas[pos.Linha, pos.Coluna] = p;
+            p.Posicao = pos;
         }
 
     }

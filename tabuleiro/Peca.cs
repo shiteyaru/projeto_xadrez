@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using tabuleiro;
 
-namespace xadrex_console.tabuleiro {
+namespace tabuleiro {
     internal class Peca {
 
         public Posicao Posicao { get; set; }
@@ -13,14 +13,16 @@ namespace xadrex_console.tabuleiro {
         public int QtdMovimentos { get; protected set; }
         public Tabuleiro Tab { get; protected set; }
 
-        public Peca (Posicao posicao, Tabuleiro tab, Cor cor) {
+        public Peca (Tabuleiro tab, Cor cor) {
 
-            Posicao = posicao;
+            Posicao = null;
             Tab = tab;
             Cor = cor;
             QtdMovimentos = 0;
 
         }
+
+
 
     }
 }

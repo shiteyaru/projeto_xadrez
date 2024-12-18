@@ -17,8 +17,8 @@ namespace xadrex_console {
                     }
 
                 }
-
                 Console.WriteLine();
+
 
             }
 
