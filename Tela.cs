@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Course;
+using System;
 using tabuleiro;
 using xadrez;
 
@@ -8,7 +9,7 @@ namespace xadrex_console {
         public static void ImprimirTabuleiro(Tabuleiro tab) {
 
             for (int i = 0; i < tab.Linhas; i++) {
-                Console.Write($"{8 - i}  ");
+                Console.Write($"{Espaco()}{8 - i}  ");
                 for (int j = 0; j < tab.Colunas; j++) {
 
                     ImprimirPeca(tab.peca(i, j));
@@ -16,8 +17,10 @@ namespace xadrex_console {
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("\n   a b c d e f g h");
+            Console.WriteLine($"\n   {Espaco()}a b c d e f g h");
         }
+
+        
 
         public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis) {
 
@@ -26,7 +29,7 @@ namespace xadrex_console {
 
 
             for (int i = 0; i < tab.Linhas; i++) {
-                Console.Write($"{8 - i}  ");
+                Console.Write($"{Espaco()}{8 - i}  ");
                 for (int j = 0; j < tab.Colunas; j++) {
                     
                     
@@ -47,7 +50,7 @@ namespace xadrex_console {
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("\n   a b c d e f g h");
+            Console.WriteLine($"\n   {Espaco()}a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
         }
 
@@ -81,6 +84,10 @@ namespace xadrex_console {
                 Console.Write(" ");
             }
 
+        }
+
+        public static string Espaco() {
+            return "                  ";
         }
     }
 }

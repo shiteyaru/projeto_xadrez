@@ -12,23 +12,34 @@ namespace Course {
                 PartidaDeXadrez partida = new PartidaDeXadrez();
 
                 while (!partida.Terminada) {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.tab);
 
-                    Console.Write("\nOrigem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                    try {
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.tab);
+                        Console.WriteLine($"\n{Tela.Espaco()}Turno: {partida.Turno}");
+                        Console.WriteLine($"{Tela.Espaco()}Aguardando jogada: {partida.JogadorAtual}");
 
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Console.Write($"\n{Tela.Espaco()}Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoOrigem(origem);
+
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
 
 
-                    Console.Write("\nDestino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.Write($"\n{Tela.Espaco()}Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoDestino(origem, destino);
 
-                    partida.ExecutaMovimento(origem, destino);
+                        partida.RealizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e) {
+                        Console.WriteLine(e.Message);
+                        Console.Write($"{Tela.Espaco()}");
+                        Console.ReadLine();
+                    }
                 }
-                
             } 
             catch (TabuleiroException e) {
                 
@@ -39,5 +50,7 @@ namespace Course {
             Console.ReadLine();
 
         }
+
+        
     }
 }
