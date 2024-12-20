@@ -11,10 +11,16 @@ namespace xadrex_console {
             ImprimirTabuleiro(partida.tab);
             Console.WriteLine();
             ImprimirPecasCapturadas(partida);
-            Console.WriteLine($"\nTurno: {partida.Turno}");
-            Console.WriteLine($"Aguardando jogada: {partida.JogadorAtual}");
-            if (partida.Xeque) {
-                Console.WriteLine("XEQUE!");
+            if (!partida.Terminada) {
+                Console.WriteLine($"\nTurno: {partida.Turno}");
+                Console.WriteLine($"Aguardando jogada: {partida.JogadorAtual}");
+                if (partida.Xeque) {
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else {
+                Console.WriteLine("\nXEQUEMATE!");
+                Console.WriteLine($"Vencedor: {partida.JogadorAtual}");
             }
 
         }

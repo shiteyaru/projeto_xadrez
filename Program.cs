@@ -38,6 +38,8 @@ namespace Course {
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Tela.ImprimirPartida(partida);
             } 
             catch (TabuleiroException e) {
                 
