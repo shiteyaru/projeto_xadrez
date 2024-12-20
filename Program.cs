@@ -15,9 +15,7 @@ namespace Course {
 
                     try {
                         Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.tab);
-                        Console.WriteLine($"\n{Tela.Espaco()}Turno: {partida.Turno}");
-                        Console.WriteLine($"{Tela.Espaco()}Aguardando jogada: {partida.JogadorAtual}");
+                        Tela.ImprimirPartida(partida);
 
                         Console.Write($"\n{Tela.Espaco()}Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();

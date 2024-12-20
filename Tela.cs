@@ -6,6 +6,44 @@ using xadrez;
 namespace xadrex_console {
     internal class Tela {
 
+        public static void ImprimirPartida(PartidaDeXadrez partida) {
+
+            ImprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partida);
+            Console.WriteLine($"\n{Tela.Espaco()}Turno: {partida.Turno}");
+            Console.WriteLine($"{Tela.Espaco()}Aguardando jogada: {partida.JogadorAtual}");
+
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez partida) {
+            
+            Console.WriteLine($"{Espaco()}Peças capturadas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.Write($"{Espaco()}Brancas: ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
+            Console.ForegroundColor = aux;
+
+            
+            
+            Console.Write($"{Espaco()}Pretas: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto) {
+
+            Console.Write("[");
+            foreach (Peca x in conjunto) {
+                Console.Write($"{x} ");
+            }
+            Console.WriteLine("]");
+        }
+
+
         public static void ImprimirTabuleiro(Tabuleiro tab) {
 
             for (int i = 0; i < tab.Linhas; i++) {
@@ -73,7 +111,10 @@ namespace xadrex_console {
             }
             else { 
                 if (peca.Cor == Cor.Branca) {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write(peca);
+                    Console.ForegroundColor = aux;
                 }
                 else {
                     ConsoleColor aux = Console.ForegroundColor;
@@ -87,7 +128,7 @@ namespace xadrex_console {
         }
 
         public static string Espaco() {
-            return "                  ";
+            return "                         ";
         }
     }
 }
