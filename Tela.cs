@@ -11,23 +11,26 @@ namespace xadrex_console {
             ImprimirTabuleiro(partida.tab);
             Console.WriteLine();
             ImprimirPecasCapturadas(partida);
-            Console.WriteLine($"\n{Tela.Espaco()}Turno: {partida.Turno}");
-            Console.WriteLine($"{Tela.Espaco()}Aguardando jogada: {partida.JogadorAtual}");
+            Console.WriteLine($"\nTurno: {partida.Turno}");
+            Console.WriteLine($"Aguardando jogada: {partida.JogadorAtual}");
+            if (partida.Xeque) {
+                Console.WriteLine("XEQUE!");
+            }
 
         }
 
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida) {
             
-            Console.WriteLine($"{Espaco()}Peças capturadas: ");
+            Console.WriteLine($"Peças capturadas: ");
             ConsoleColor aux = Console.ForegroundColor;
-            Console.Write($"{Espaco()}Brancas: ");
+            Console.Write($"Brancas: ");
             Console.ForegroundColor = ConsoleColor.Blue;
             ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
             Console.ForegroundColor = aux;
 
             
             
-            Console.Write($"{Espaco()}Pretas: ");
+            Console.Write($"Pretas: ");
             Console.ForegroundColor = ConsoleColor.Red;
             ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
             Console.ForegroundColor = aux;
@@ -47,7 +50,7 @@ namespace xadrex_console {
         public static void ImprimirTabuleiro(Tabuleiro tab) {
 
             for (int i = 0; i < tab.Linhas; i++) {
-                Console.Write($"{Espaco()}{8 - i}  ");
+                Console.Write($"{8 - i}  ");
                 for (int j = 0; j < tab.Colunas; j++) {
 
                     ImprimirPeca(tab.peca(i, j));
@@ -55,7 +58,7 @@ namespace xadrex_console {
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"\n   {Espaco()}a b c d e f g h");
+            Console.WriteLine($"\n    a  b  c  d  e  f  g  h");
         }
 
         
@@ -67,7 +70,7 @@ namespace xadrex_console {
 
 
             for (int i = 0; i < tab.Linhas; i++) {
-                Console.Write($"{Espaco()}{8 - i}  ");
+                Console.Write($"{8 - i}  ");
                 for (int j = 0; j < tab.Colunas; j++) {
                     
                     
@@ -88,7 +91,7 @@ namespace xadrex_console {
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"\n   {Espaco()}a b c d e f g h");
+            Console.WriteLine($"\n    a  b  c  d  e  f  g  h");
             Console.BackgroundColor = fundoOriginal;
         }
 
@@ -107,9 +110,10 @@ namespace xadrex_console {
         public static void ImprimirPeca(Peca peca) {
 
             if (peca == null) {
-                Console.Write($"- ");
+                Console.Write($" - ");
             }
-            else { 
+            else {
+                Console.Write(" ");
                 if (peca.Cor == Cor.Branca) {
                     ConsoleColor aux = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Blue;

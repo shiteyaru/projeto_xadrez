@@ -17,7 +17,7 @@ namespace Course {
                         Console.Clear();
                         Tela.ImprimirPartida(partida);
 
-                        Console.Write($"\n{Tela.Espaco()}Origem: ");
+                        Console.Write($"\nOrigem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
                         partida.ValidarPosicaoOrigem(origem);
 
@@ -26,7 +26,7 @@ namespace Course {
                         Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
 
 
-                        Console.Write($"\n{Tela.Espaco()}Destino: ");
+                        Console.Write($"\nDestino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
                         partida.ValidarPosicaoDestino(origem, destino);
 
@@ -34,7 +34,7 @@ namespace Course {
                     }
                     catch (TabuleiroException e) {
                         Console.WriteLine(e.Message);
-                        Console.Write($"{Tela.Espaco()}");
+                        Console.Write($"");
                         Console.ReadLine();
                     }
                 }
